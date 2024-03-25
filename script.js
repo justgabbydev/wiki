@@ -1,6 +1,6 @@
 var pages = [
   { title: 'Homepage', url: '/index.html' },
-  { title: 'TWO', url: '/two.html' },
+  { title: 'TWO', url: '/wiki/two.html' },
   { title: 'Contattaci', url: '/contact.html' }
   // Aggiungi altre pagine qui
 ];
