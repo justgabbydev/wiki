@@ -26,13 +26,11 @@
 
     <main>
         <!-- Altre sezioni qui -->
-        
-          <div class="search-wrapper">
-    <label for="search">Search Users</label>
-    <input type="search" id="search" data-search>
+          <div class="search-container">
+    <input type="text" id="searchInput" placeholder="Cerca...">
+    <button onclick="search()">Cerca</button>
   </div>
-  <div class="user-cards" data-user-cards-container></div>
-
+  <div id="searchResults"></div>
         
     </main>
 
