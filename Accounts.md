@@ -1,3 +1,0 @@
-- Justgabbydev
-- GabbyStudios
-- GabrielJonesDev
