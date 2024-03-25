@@ -1,26 +1,25 @@
+var pages = [
+  { title: 'Homepage', url: '/index.html' },
+  { title: 'TWO', url: '/two.html' },
+  { title: 'Contattaci', url: '/contact.html' }
+  // Aggiungi altre pagine qui
+];
+
 function search() {
   var input = document.getElementById('searchInput').value.toLowerCase();
   var searchResults = document.getElementById('searchResults');
   searchResults.innerHTML = '';
 
-  // Array di esempio di oggetti su cui effettuare la ricerca
-  var data = [
-    { name: 'Prodotto 1', description: 'Descrizione del prodotto 1' },
-    { name: 'Prodotto 2', description: 'Descrizione del prodotto 2' },
-    { name: 'Prodotto 3', description: 'Descrizione del prodotto 3' }
-    // Aggiungi altri oggetti qui
-  ];
-
-  var results = data.filter(function(item) {
-    return item.name.toLowerCase().includes(input) || item.description.toLowerCase().includes(input);
+  var results = pages.filter(function(page) {
+    return page.title.toLowerCase().includes(input);
   });
 
   if (results.length === 0) {
     searchResults.innerHTML = 'Nessun risultato trovato.';
   } else {
-    results.forEach(function(item) {
+    results.forEach(function(page) {
       var resultDiv = document.createElement('div');
-      resultDiv.innerHTML = '<h3>' + item.name + '</h3><p>' + item.description + '</p>';
+      resultDiv.innerHTML = '<a href="' + page.url + '">' + page.title + '</a>';
       searchResults.appendChild(resultDiv);
     });
   }
