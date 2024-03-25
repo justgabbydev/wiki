@@ -1,29 +1,27 @@
-const userCardTemplate = document.querySelector("[data-user-template]")
-const userCardContainer = document.querySelector("[data-user-cards-container]")
-const searchInput = document.querySelector("[data-search]")
+function search() {
+  var input = document.getElementById('searchInput').value.toLowerCase();
+  var searchResults = document.getElementById('searchResults');
+  searchResults.innerHTML = '';
 
-let users = []
+  // Array di esempio di oggetti su cui effettuare la ricerca
+  var data = [
+    { name: 'Prodotto 1', description: 'Descrizione del prodotto 1' },
+    { name: 'Prodotto 2', description: 'Descrizione del prodotto 2' },
+    { name: 'Prodotto 3', description: 'Descrizione del prodotto 3' }
+    // Aggiungi altri oggetti qui
+  ];
 
-searchInput.addEventListener("input", e => {
-  const value = e.target.value.toLowerCase()
-  users.forEach(user => {
-    const isVisible =
-      user.name.toLowerCase().includes(value) ||
-      user.email.toLowerCase().includes(value)
-    user.element.classList.toggle("hide", !isVisible)
-  })
-})
+  var results = data.filter(function(item) {
+    return item.name.toLowerCase().includes(input) || item.description.toLowerCase().includes(input);
+  });
 
-fetch("https://jsonplaceholder.typicode.com/users")
-  .then(res => res.json())
-  .then(data => {
-    users = data.map(user => {
-      const card = userCardTemplate.content.cloneNode(true).children[0]
-      const header = card.querySelector("[data-header]")
-      const body = card.querySelector("[data-body]")
-      header.textContent = user.name
-      body.textContent = user.email
-      userCardContainer.append(card)
-      return { name: user.name, email: user.email, element: card }
-    })
-  })
+  if (results.length === 0) {
+    searchResults.innerHTML = 'Nessun risultato trovato.';
+  } else {
+    results.forEach(function(item) {
+      var resultDiv = document.createElement('div');
+      resultDiv.innerHTML = '<h3>' + item.name + '</h3><p>' + item.description + '</p>';
+      searchResults.appendChild(resultDiv);
+    });
+  }
+}
